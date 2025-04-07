@@ -49,4 +49,27 @@ app.post('/',async(req,res)=>{
     }catch(err){
         res.status(400).json({Msg: `Error while creating user ${err}`})
     }
-})
+});
+
+app.patch('/',async(req,res)=>{
+    try{
+        const {firstName,lastName,address,mobileNo,id} = req.body;
+        await user.findByIdAndUpdate(id,{firstName,lastName,address,mobileNo});
+        res.status(201).json({Msg: `User updated Successfully`});
+    }catch(err){
+        res.status(400).json({Msg : `Error ${err}`});
+    }
+});
+
+app.delete('/',async(req,res)=>{
+    try{
+        const {id} = req.body;
+        console.log(id);
+        await user.findByIdAndDelete(id);
+        res.status(201).json({Msg : "User deleted successfully"});
+    }catch(err){
+        res.status(400).json({Msg : `Error ${err}`});
+    }
+});
+
+
