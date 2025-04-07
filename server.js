@@ -61,7 +61,7 @@ app.patch('/',async(req,res)=>{
     }
 });
 
-app.delete('/',async(req,res)=>{
+app.post('/delete',async(req,res)=>{
     try{
         const {id} = req.body;
         console.log(id);
